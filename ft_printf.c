@@ -6,7 +6,7 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:29:57 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/09/24 17:26:17 by nperez-d         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:34:20 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,15 @@ int	ft_conversion_type(va_list args, char *str)
 	if (*str == 's')
 		char_count += ft_putstr(va_arg(args, char *));
 	if (*str == 'p')
-		char_count += ;
-	if (*str == 'd')
-		char_count += ;
-	if (*str == 'i')
-		char_count += ;
+		char_count += ft_putpointer(va_arg(args, void *));
+	if (*str == 'd' || *str == 'i')
+		char_count += ft_putnbr(va_arg(args, int));
 	if (*str == 'u')
-		char_count += ;
-	if (*str == 'x')
-		char_count += ;
-	if (*str == 'X')
-		char_count += ;
+		char_count += ft_putunsnbr(va_arg(args, unsigned int));
+	if (*str == 'x' || *str == 'X')
+		char_count += ft_puthex(va_arg(args, unsigned int), *str);
 	if (*str == '%')
-		char_count += ;
+		char_count += ft_putchar('%');
 }
 
 int	ft_printf(char const *str, ...)
