@@ -6,20 +6,22 @@
 #    By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 16:53:24 by nperez-d          #+#    #+#              #
-#    Updated: 2024/10/02 17:01:24 by nperez-d         ###   ########.fr        #
+#    Updated: 2024/10/02 17:25:38 by nperez-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= libftprintf.a
+NAME		= libftprintf.a
 
-SRCS		:= ft_printf.c ft_printf_wrtutils.c ft_printf_nbrutils.c
+SRCS		= src/ft_printf.c src/ft_printf_wrtutils.c src/ft_printf_nbrutils.c
 
-OBJS		:= $(SRCS:.c=.o)
+INC			= includes/ft_printf.h
 
-CC			:= cc
-CFLAGS		:= -Wall -Wextra -Werror
+OBJS		= $(SRCS:.c=.o)
 
-RM			:= rm -f
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror -I
+
+RM			= rm -f
 
 all: $(NAME)
 
