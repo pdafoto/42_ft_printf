@@ -6,7 +6,7 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:29:57 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/10/03 11:13:37 by nperez-d         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:05:36 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	ft_printf(char const *str, ...)
 			str++;
 			char_count += ft_conversion_type(args, (char *)str);
 		}
+		str++;
 	}
 	va_end(args);
 	return (char_count);
