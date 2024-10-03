@@ -6,11 +6,11 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:37:37 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/09/26 17:40:04 by nperez-d         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:15:10 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#include "ft_printf.h"
 
 int	ft_putpointer(void *pointer)
 {
@@ -59,13 +59,16 @@ int	ft_putnbr(int n)
 	if (num > 9)
 		char_count += ft_putnbr(num / 10);
 	char_count += ft_putchar((num % 10) + '0');
+	return (char_count);
 }
 
 int	ft_putunsnbr(unsigned int n)
 {
 	int	char_count;
 
+	char_count = 0;
 	if (n > 9)
 		char_count += ft_putunsnbr(n / 10);
 	char_count += ft_putchar((n % 10) + '0');
+	return (char_count);
 }

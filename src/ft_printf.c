@@ -6,7 +6,7 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:29:57 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/10/02 17:38:45 by nperez-d         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:13:37 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_conversion_type(va_list args, char *str)
 {
 	int	char_count;
 
+	char_count = 0;
 	if (*str == 'c')
 		char_count += ft_putchar((char) va_arg(args, int));
 	if (*str == 's')
@@ -30,6 +31,7 @@ int	ft_conversion_type(va_list args, char *str)
 		char_count += ft_puthex(va_arg(args, unsigned int), *str);
 	if (*str == '%')
 		char_count += ft_putchar('%');
+	return (char_count);
 }
 
 int	ft_printf(char const *str, ...)
