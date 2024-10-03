@@ -6,7 +6,7 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:26:04 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/10/03 13:15:29 by nperez-d         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:26:41 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int	main(void)
 	ptr = (void *)&number;
 	c = 'T';
 
+	len = printf(" ");
+	printf("counter=%d\n", len);
+	len = ft_printf(" ");
+	ft_printf("counter=%d\n", len);
 	len = printf("Original Simple test\n");
 	printf("counter=%d\n", len);
 	len = ft_printf("Custom Simple test\n");
