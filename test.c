@@ -6,7 +6,7 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:26:04 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/10/09 13:37:33 by nperez-d         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:07:44 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,3 +83,5 @@ int	main(void)
 	ft_printf("--------------------------------------------------------\n");
 	return (0);
 }
+// To test compile using
+// cc -Wall -Wextra -Werror test.c ./includes/ft_printf.h -L. -lftprintf
