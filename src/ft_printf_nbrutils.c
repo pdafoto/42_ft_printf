@@ -6,69 +6,55 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:37:37 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/10/03 11:15:10 by nperez-d         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:42:06 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putpointer(void *pointer)
+void	ft_putpointer(unsigned long long pointer, int *c_count)
 {
-	int	char_count;
-
-	char_count = 0;
 	if (!pointer)
 	{
-		char_count += ft_putstr("(nil)");
-		return (char_count);
+		write(1, "(null)", 6);
+		(*c_count) += 6;
 	}
-	char_count += ft_putstr("0x");
-	char_count += ft_puthex((unsigned long)pointer, 'x');
-	return (char_count);
+	ft_putstr("0x", c_count);
+	ft_puthex(pointer, 'x', c_count);
 }
 
-int	ft_puthex(unsigned long n, char specifier)
+void	ft_puthex(unsigned int n, char conversion, int *c_count)
 {
 	char	*base;
-	int		char_count;
 
-	if (specifier == 'X')
+	if (conversion == 'X')
 		base = "0123456789ABCDEF";
-	if (specifier == 'x')
+	if (conversion == 'x')
 		base = "0123456789abcdef";
-	char_count = 0;
 	if (n >= 16)
-		char_count += ft_puthex(n / 16, specifier);
-	char_count += ft_putchar(base[n % 16]);
-	return (char_count);
+		ft_puthex(n / 16, conversion, c_count);
+	ft_putchar(base[n % 16], c_count);
 }
 
-int	ft_putnbr(int n)
+void	ft_putnbr(int n, int *c_count)
 {
-	unsigned int	num;
-	int				char_count;
+	long int	num;
 
-	char_count = 0;
 	if (n < 0)
 	{
-		char_count += ft_putchar('-');
+		ft_putchar('-', c_count);
 		num = n * -1;
 	}
 	else
 		num = n;
 	if (num > 9)
-		char_count += ft_putnbr(num / 10);
-	char_count += ft_putchar((num % 10) + '0');
-	return (char_count);
+		ft_putnbr(num / 10, c_count);
+	ft_putchar((num % 10) + '0', c_count);
 }
 
-int	ft_putunsnbr(unsigned int n)
+void	ft_putunsnbr(unsigned int n, int *c_count)
 {
-	int	char_count;
-
-	char_count = 0;
 	if (n > 9)
-		char_count += ft_putunsnbr(n / 10);
-	char_count += ft_putchar((n % 10) + '0');
-	return (char_count);
+		ft_putunsnbr(n / 10, c_count);
+	ft_putchar((n % 10) + '0', c_count);
 }

@@ -6,7 +6,7 @@
 #    By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 16:53:24 by nperez-d          #+#    #+#              #
-#    Updated: 2024/10/03 11:40:07 by nperez-d         ###   ########.fr        #
+#    Updated: 2024/10/09 12:52:26 by nperez-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,25 +14,26 @@ NAME		= libftprintf.a
 
 SRCS		= src/ft_printf.c src/ft_printf_wrtutils.c src/ft_printf_nbrutils.c
 
-INC			= ./includes/ft_printf.h
-OBJS		= $(SRCS:.c=.o)
+OBJS		= *.o
+
+INC			= includes/ft_printf.h
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -I./includes
-
-RM			= rm -f
+CFLAGS		= -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(INC)
-	ar rcs $(NAME) $(OBJS)
+$(NAME):
+	@$(CC) $(CFLAGS) -c $(SRCS) $(INC)
+	@ar -rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	@/bin/rm -rf $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	@/bin/rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: clean fclean re
+.PHONY: all clean fclean re

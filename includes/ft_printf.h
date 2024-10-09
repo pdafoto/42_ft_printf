@@ -6,7 +6,7 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:37:22 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/10/03 11:26:33 by nperez-d         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:38:05 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-int	ft_printf(char const *format, ...);
-int	ft_conversion_type(va_list args, char *str);
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putpointer(void *pointer);
-int	ft_puthex(unsigned long n, char specifier);
-int	ft_putnbr(int n);
-int	ft_putunsnbr(unsigned int n);
+int		ft_printf(char const *format, ...);
+void	ft_conversion_type(va_list args, const char conversion, int *c_count);
+void	ft_putchar(int c, int *char_count);
+void	ft_putstr(char *s, int *c_count);
+void	ft_putpointer(unsigned long long pointer, int *c_count);
+void	ft_puthex(unsigned int n, char conversion, int *c_count);
+void	ft_putnbr(int n, int *c_count);
+void	ft_putunsnbr(unsigned int n, int *c_count);
 
 #endif
