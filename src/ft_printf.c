@@ -6,50 +6,52 @@
 /*   By: nperez-d <nperez-d@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:29:57 by nperez-d          #+#    #+#             */
-/*   Updated: 2024/10/09 13:09:36 by nperez-d         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:00:33 by nperez-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_conversion_type(va_list args, const char conversion, int *c_count)
+int	ft_conversion_type(va_list args, char *str)
 {
-	if (conversion == 'c')
-		ft_putchar(va_arg(args, int), c_count);
-	else if (conversion == 's')
-		ft_putstr(va_arg(args, char *), c_count);
-	else if (conversion == 'p')
-		ft_putpointer(va_arg(args, unsigned long long), c_count);
-	else if (conversion == 'd' || conversion == 'i')
-		ft_putnbr(va_arg(args, int), c_count);
-	else if (conversion == 'u')
-		ft_putunsnbr(va_arg(args, unsigned int), c_count);
-	else if (conversion == 'x' || conversion == 'X')
-		ft_puthex(va_arg(args, unsigned int), conversion, c_count);
-	else if (conversion == '%')
-		ft_putchar('%', c_count);
+	int	char_count;
+
+	char_count = 0;
+	if (*str == 'c')
+		char_count += ft_putchar((char) va_arg(args, int));
+	if (*str == 's')
+		char_count += ft_putstr(va_arg(args, char *));
+	if (*str == 'p')
+		char_count += ft_putpointer(va_arg(args, void *));
+	if (*str == 'd' || *str == 'i')
+		char_count += ft_putnbr(va_arg(args, int));
+	if (*str == 'u')
+		char_count += ft_putunsnbr(va_arg(args, unsigned int));
+	if (*str == 'x' || *str == 'X')
+		char_count += ft_puthex(va_arg(args, unsigned int), *str);
+	if (*str == '%')
+		char_count += ft_putchar('%');
+	return (char_count);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	int		i;
-	int		c_count;
+	int		total_count;
 	va_list	args;
 
-	i = 0;
-	c_count = 0;
+	total_count = 0;
 	va_start(args, str);
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] == '%')
+		if (*str == '%')
 		{
-			ft_conversion_type(args, str[i + 1], &c_count);
-			i++;
+			str++;
+			total_count += ft_conversion_type(args, (char *)str);
 		}
 		else
-			ft_putchar(str[i], &c_count);
-		i++;
+			total_count += ft_putchar(*str);
+		str++;
 	}
 	va_end(args);
-	return (c_count);
+	return (total_count);
 }
